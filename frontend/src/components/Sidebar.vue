@@ -44,7 +44,15 @@
           <i class="material-icons">settings_applications</i>
           <span>{{ $t("sidebar.settings") }}</span>
         </button>
-
+          <button
+            class="action"
+            @click="help"
+            :aria-label="$t('sidebar.help')"
+            :title="$t('sidebar.help')"
+          >
+            <i class="material-icons">help</i>
+            <span>{{ $t("sidebar.help") }}</span>
+          </button>
         <button
           v-if="canLogout"
           @click="logout"
@@ -84,13 +92,13 @@
     <div
       class="credits"
       v-if="isFiles && !disableUsedPercentage"
-      style="width: 90%; margin: 2em 2.5em 3em 2.5em"
+      style="width: 90% "
     >
       <progress-bar :val="usage.usedPercentage" size="small"></progress-bar>
       <br />
       {{ usage.used }} of {{ usage.total }} used
     </div>
-
+    <!--
     <p class="credits">
       <span>
         <span v-if="disableExternal">File Browser</span>
@@ -106,7 +114,7 @@
       <span>
         <a @click="help">{{ $t("sidebar.help") }}</a>
       </span>
-    </p>
+    </p>-->
   </nav>
 </template>
 
