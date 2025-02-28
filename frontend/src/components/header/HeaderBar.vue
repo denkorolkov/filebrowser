@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img v-if="showLogo" :src="logoURL" />
+    <router-link to="/" exact><img v-if="showLogo" :src="logoURL" /></router-link>
     <Action
       v-if="showMenu"
       class="menu-button"
