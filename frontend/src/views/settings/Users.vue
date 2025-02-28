@@ -1,7 +1,7 @@
 <template>
   <errors v-if="error" :errorCode="error.status" />
   <div class="row" v-else-if="!layoutStore.loading">
-    <div class="column">
+    <div class="column" style="width:100%">
       <div class="card">
         <div class="card-title">
           <h2>{{ t("settings.users") }}</h2>
@@ -16,6 +16,7 @@
           <table>
             <tr>
               <th>{{ t("settings.username") }}</th>
+              <th>{{ t("settings.fullname") }}</th>
               <th>{{ t("settings.admin") }}</th>
               <th>{{ t("settings.scope") }}</th>
               <th></th>
@@ -23,6 +24,7 @@
 
             <tr v-for="user in users" :key="user.id">
               <td>{{ user.username }}</td>
+              <td>{{ user.fullname }}</td>
               <td>
                 <i v-if="user.perm.admin" class="material-icons">done</i
                 ><i v-else class="material-icons">close</i>

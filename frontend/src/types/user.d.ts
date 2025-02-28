@@ -1,6 +1,7 @@
 interface IUser {
   id: number;
   username: string;
+  fullname: string;
   password: string;
   scope: string;
   locale: string;
@@ -20,6 +21,7 @@ type ViewModeType = "list" | "mosaic" | "mosaic gallery";
 interface IUserForm {
   id?: number;
   username?: string;
+  fullname?: string;
   password?: string;
   scope?: string;
   locale?: string;

@@ -23,6 +23,7 @@ const (
 type User struct {
 	ID           uint          `storm:"id,increment" json:"id"`
 	Username     string        `storm:"unique" json:"username"`
+	Fullname     string        `storm:"unique" json:"fullname"`
 	Password     string        `json:"password"`
 	Scope        string        `json:"scope"`
 	Locale       string        `json:"locale"`

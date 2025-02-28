@@ -10,6 +10,16 @@
       />
     </p>
 
+    <p v-if="!isDefault && props.user !== null">
+      <label for="fullname">{{ t("settings.fullname") }}</label>
+      <input
+        class="input input--block"
+        type="text"
+        v-model="user.fullname"
+        id="fullname"
+      />
+    </p>
+
     <p v-if="!isDefault">
       <label for="password">{{ t("settings.password") }}</label>
       <input
