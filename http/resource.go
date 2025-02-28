@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"path"
 	"path/filepath"
 	"strings"
@@ -80,7 +81,10 @@ func resourceDeleteHandler(fileCache FileCache) handleFunc {
 		}
 
 		err = d.RunHook(func() error {
-			return d.user.Fs.RemoveAll(r.URL.Path)
+			//return d.user.Fs.RemoveAll(r.URL.Path)
+			cmd := exec.Command("trash", d.user.FullPath(r.URL.Path))
+			cmd.Stderr = os.Stderr
+			return cmd.Run()
 		}, "delete", r.URL.Path, "", d.user)
 
 		if err != nil {
