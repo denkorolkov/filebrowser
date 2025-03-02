@@ -7,6 +7,7 @@ import Share from "@/views/Share.vue";
 import Users from "@/views/settings/Users.vue";
 import User from "@/views/settings/User.vue";
 import Settings from "@/views/Settings.vue";
+import Favorites from "@/views/settings/Favorites.vue";
 import GlobalSettings from "@/views/settings/Global.vue";
 import ProfileSettings from "@/views/settings/Profile.vue";
 import Shares from "@/views/settings/Shares.vue";
@@ -24,6 +25,7 @@ const titles = {
   Settings: "sidebar.settings",
   ProfileSettings: "settings.profileSettings",
   Shares: "settings.shareManagement",
+  Favorites: "settings.favoritesSettings",
   GlobalSettings: "settings.globalSettings",
   Users: "settings.users",
   User: "settings.user",
@@ -87,6 +89,11 @@ const routes = [
             path: "shares",
             name: "Shares",
             component: Shares,
+          },
+          {
+            path: "favorites",
+            name: "Favorites",
+            component: Favorites,
           },
           {
             path: "global",

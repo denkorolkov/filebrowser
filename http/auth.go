@@ -22,11 +22,14 @@ const (
 
 type userInfo struct {
 	ID           uint              `json:"id"`
+	Username     string            `json:"username"`
+	Fullname     string            `json:"fullname"`
 	Locale       string            `json:"locale"`
 	ViewMode     users.ViewMode    `json:"viewMode"`
 	SingleClick  bool              `json:"singleClick"`
 	Perm         users.Permissions `json:"perm"`
 	Commands     []string          `json:"commands"`
+	Favorites    []string          `json:"favorites"`
 	LockPassword bool              `json:"lockPassword"`
 	HideDotfiles bool              `json:"hideDotfiles"`
 	DateFormat   bool              `json:"dateFormat"`
@@ -187,12 +190,15 @@ func printToken(w http.ResponseWriter, _ *http.Request, d *data, user *users.Use
 	claims := &authToken{
 		User: userInfo{
 			ID:           user.ID,
+			Username:     user.Username,
+			Fullname:     user.Fullname,
 			Locale:       user.Locale,
 			ViewMode:     user.ViewMode,
 			SingleClick:  user.SingleClick,
 			Perm:         user.Perm,
 			LockPassword: user.LockPassword,
 			Commands:     user.Commands,
+			Favorites:    user.Favorites,
 			HideDotfiles: user.HideDotfiles,
 			DateFormat:   user.DateFormat,
 		},

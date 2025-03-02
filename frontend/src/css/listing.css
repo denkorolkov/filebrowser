@@ -20,6 +20,10 @@ html[dir="rtl"] #listing {
   justify-content: flex-start;
 }
 
+#listing > span > div {
+  display: ruby;
+}
+
 #listing .item {
   background: var(--surfacePrimary);
   border-color: var(--divider);

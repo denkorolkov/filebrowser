@@ -2,16 +2,37 @@
   <div v-show="active" @click="closeHovers" class="overlay"></div>
   <nav :class="{ active }">
     <template v-if="isLoggedIn">
-      <button
-        class="action"
-        @click="toRoot"
-        :aria-label="$t('sidebar.myFiles')"
-        :title="$t('sidebar.myFiles')"
-      >
-        <i class="material-icons">folder</i>
-        <span>{{ $t("sidebar.myFiles") }}</span>
-      </button>
-
+        <button
+          class="action"
+          @click="toSettings"
+          :aria-label="user.fullname"
+          :title="user.fullname"
+        >
+          <i class="material-icons">person</i>
+          <span>{{ user.username }}</span>
+        </button>
+      <div>       
+          <button
+            class="action"
+            @click="toRoot"
+            :aria-label="$t('sidebar.myFiles')"
+            :title="$t('sidebar.myFiles')"
+          >
+            <i class="material-icons">folder</i>
+            <span>{{ $t("sidebar.myFiles") }}</span>
+          </button>
+      </div>
+      <div v-if="user.favorites">
+          <router-link v-for="fav in user.favorites"
+            class="action"
+            :to="fav"
+            :aria-label="fav"
+            :title="fav"
+          >
+            <i class="material-icons">folder_special</i>
+            <span>{{ fav }}</span>
+          </router-link>
+      </div>
       <div v-if="user.perm.create">
         <button
           @click="showHover('newDir')"
@@ -33,7 +54,17 @@
           <span>{{ $t("sidebar.newFile") }}</span>
         </button>
       </div>
-
+      <div v-if="user.perm.trash">
+        <button
+          class="action"
+          @click="toTrash"
+          :aria-label="$t('sidebar.trash')"
+          :title="$t('sidebar.trash')"
+        >
+        <i class="material-icons">delete</i>
+        <span>{{ $t("sidebar.trash") }}</span>
+      </button>
+      </div>
       <div>
         <button
           class="action"
@@ -191,6 +222,10 @@ export default {
     },
     toSettings() {
       this.$router.push({ path: "/settings" });
+      this.closeHovers();
+    },
+    toTrash() {
+      this.$router.push({ path: "/trash" });
       this.closeHovers();
     },
     help() {

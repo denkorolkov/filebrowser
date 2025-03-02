@@ -7,6 +7,7 @@ interface IUser {
   locale: string;
   perm: Permissions;
   commands: string[];
+  favorites: string[];
   rules: IRule[];
   lockPassword: boolean;
   hideDotfiles: boolean;
@@ -46,6 +47,7 @@ interface Permissions {
   rename: boolean;
   share: boolean;
   shell: boolean;
+  trash: boolean;
   upload: boolean;
 }
 

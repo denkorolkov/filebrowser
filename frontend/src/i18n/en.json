@@ -186,6 +186,8 @@
     "executeOnShell": "Execute on shell",
     "executeOnShellDescription": "By default, File Browser executes the commands by calling their binaries directly. If you wish to run them on a shell instead (such as Bash or PowerShell), you can define it here with the required arguments and flags. If set, the command you execute will be appended as an argument. This applies to both user commands and event hooks.",
     "fullname": "Full Name",
+    "favoritesSettings": "Favorites",
+    "favoritesHint": "Enter the bookmark addresses, one per line.",
     "globalRules": "This is a global set of allow and disallow rules. They apply to every user. You can define specific rules on each user's settings to override these ones.",
     "globalSettings": "Global Settings",
     "hideDotfiles": "Hide dotfiles",
@@ -207,7 +209,8 @@
       "execute": "Execute commands",
       "modify": "Edit files",
       "rename": "Rename or move files and directories",
-      "share": "Share files"
+      "share": "Share files",
+      "trash": "View Trash"
     },
     "permissions": "Permissions",
     "permissionsHelp": "You can set the user to be an administrator or choose the permissions individually. If you select \"Administrator\", all of the other options will be automatically checked. The management of users remains a privilege of an administrator.\n",
@@ -251,7 +254,8 @@
     "preview": "Preview",
     "settings": "Settings",
     "signup": "Signup",
-    "siteSettings": "Site Settings"
+    "siteSettings": "Site Settings",
+    "trash": "Trash"
   },
   "success": {
     "linkCopied": "Link copied!"

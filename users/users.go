@@ -32,6 +32,7 @@ type User struct {
 	SingleClick  bool          `json:"singleClick"`
 	Perm         Permissions   `json:"perm"`
 	Commands     []string      `json:"commands"`
+	Favorites    []string      `json:"favorites"`
 	Sorting      files.Sorting `json:"sorting"`
 	Fs           afero.Fs      `json:"-" yaml:"-"`
 	Rules        []rules.Rule  `json:"rules"`
@@ -50,6 +51,7 @@ var checkableFields = []string{
 	"Scope",
 	"ViewMode",
 	"Commands",
+	"Favorites",
 	"Sorting",
 	"Rules",
 }
@@ -80,6 +82,10 @@ func (u *User) Clean(baseScope string, fields ...string) error {
 		case "Commands":
 			if u.Commands == nil {
 				u.Commands = []string{}
+			}
+		case "Favorites":
+			if u.Favorites == nil {
+				u.Favorites = []string{}
 			}
 		case "Sorting":
 			if u.Sorting.By == "" {
