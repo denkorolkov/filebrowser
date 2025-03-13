@@ -66,6 +66,10 @@ func NewHandler(
 	api.PathPrefix("/resources").Handler(monkey(resourcePutHandler, "/api/resources")).Methods("PUT")
 	api.PathPrefix("/resources").Handler(monkey(resourcePatchHandler(fileCache), "/api/resources")).Methods("PATCH")
 
+	api.PathPrefix("/trash").Handler(monkey(trashGetHandler, "/api/trash")).Methods("GET")
+	api.PathPrefix("/trash").Handler(monkey(trashDeleteHandler(fileCache), "/api/trash")).Methods("DELETE")
+	api.PathPrefix("/trash").Handler(monkey(trashPutHandler, "/api/trash")).Methods("PUT")
+
 	api.PathPrefix("/tus").Handler(monkey(tusPostHandler(), "/api/tus")).Methods("POST")
 	api.PathPrefix("/tus").Handler(monkey(tusHeadHandler(), "/api/tus")).Methods("HEAD", "GET")
 	api.PathPrefix("/tus").Handler(monkey(tusPatchHandler(), "/api/tus")).Methods("PATCH")
