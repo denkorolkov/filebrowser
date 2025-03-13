@@ -2,11 +2,11 @@
   <div class="breadcrumbs">
     <component
       :is="element"
-      :to="base || ''"
-      :aria-label="t('files.home')"
-      :title="t('files.home')"
+      :to="base"
+      :aria-label="title || t('files.home')"
+      :title="title || t('files.home')"
     >
-      <i class="material-icons">home</i>
+      <i class="material-icons">{{ icon }}</i>
     </component>
 
     <span v-for="(link, index) in items" :key="index">
@@ -27,10 +27,19 @@ const { t } = useI18n();
 
 const route = useRoute();
 
-const props = defineProps<{
-  base: string;
+export interface Props {
+  base?: string;
+  title?: string;
+  icon?: string;
   noLink?: boolean;
-}>();
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  base: '',
+  title: '',
+  icon: 'home',
+  noLink: false,
+})
 
 const items = computed(() => {
   const relativePath = route.path.replace(props.base, "");

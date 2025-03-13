@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "@/views/Login.vue";
 import Layout from "@/views/Layout.vue";
 import Files from "@/views/Files.vue";
+import Trash from "@/views/Trash.vue";
 import Share from "@/views/Share.vue";
 import Users from "@/views/settings/Users.vue";
 import User from "@/views/settings/User.vue";
@@ -20,6 +21,7 @@ import { login, validateLogin } from "@/utils/auth";
 
 const titles = {
   Login: "sidebar.login",
+  Trash: "sidebar.trash",
   Share: "buttons.share",
   Files: "files.files",
   Settings: "sidebar.settings",
@@ -62,6 +64,20 @@ const routes = [
         path: ":path*",
         name: "Files",
         component: Files,
+      },
+    ],
+  },
+  {
+  path: "/trash",
+    component: Layout,
+    meta: {
+      requiresAuth: true,
+    },
+    children: [
+      {
+        path: ":path*",
+        name: "Trash",
+        component: Trash,
       },
     ],
   },

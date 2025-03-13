@@ -8,6 +8,7 @@ interface ISettings {
   tus: SettingsTus;
   shell: string[];
   commands: SettingsCommand;
+  trashPath: string;
 }
 
 interface SettingsDefaults {

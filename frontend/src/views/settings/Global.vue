@@ -136,6 +136,14 @@
               />
             </p>
           </div>
+          
+          <h3>{{ t("sidebar.trash") }}</h3>
+            <p class="small">{{ t("settings.trashPath") }}</p>
+            <input
+              class="input input--block"
+              type="text"
+              v-model="settings.trashPath"
+            />
         </div>
 
         <div class="card-action">
