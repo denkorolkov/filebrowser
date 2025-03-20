@@ -43,7 +43,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.vue";
 import Errors from "@/views/Errors.vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
-import FileListing from "@/views/files/FileListing.vue";
+import TrashListing from "@/views/files/TrashListing.vue";
 import { StatusError } from "@/api/utils";
 import { name } from "../utils/constants";
 
@@ -73,7 +73,7 @@ const currentView = computed(() => {
   }
 
   if (fileStore.req.isDir) {
-    return FileListing;
+    return TrashListing;
   } else if (
     fileStore.req.type === "text" ||
     fileStore.req.type === "textImmutable"

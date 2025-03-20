@@ -4,8 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"os"
-	"os/exec"
 	"strings"
 
 	"github.com/spf13/afero"
@@ -51,14 +49,10 @@ var trashGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *d
 
 func trashDeleteHandler(fileCache FileCache) handleFunc {
 	return withUser(func(_ http.ResponseWriter, r *http.Request, d *data) (int, error) {
-		if r.URL.Path == "/" || !d.user.Perm.Delete {
-			return http.StatusForbidden, nil
-		}
-
 		file, err := files.NewFileInfo(&files.FileOptions{
-			Fs:         d.user.Fs,
+			Fs:         afero.NewBasePathFs(afero.NewOsFs(), d.TrashPath+"/files"),
 			Path:       r.URL.Path,
-			Modify:     d.user.Perm.Modify,
+			Modify:     false,
 			Expand:     false,
 			ReadHeader: d.server.TypeDetectionByHeader,
 			Checker:    d,
@@ -73,13 +67,7 @@ func trashDeleteHandler(fileCache FileCache) handleFunc {
 			return errToStatus(err), err
 		}
 
-		err = d.RunHook(func() error {
-			//return d.user.Fs.RemoveAll(r.URL.Path)
-			cmd := exec.Command("trash", d.user.FullPath(r.URL.Path))
-			cmd.Stderr = os.Stderr
-			return cmd.Run()
-		}, "delete", r.URL.Path, "", d.user)
-
+		err = afero.NewBasePathFs(afero.NewOsFs(), d.TrashPath+"/files").RemoveAll(r.URL.Path)
 		if err != nil {
 			return errToStatus(err), err
 		}

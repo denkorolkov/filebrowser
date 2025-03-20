@@ -37,7 +37,9 @@
     "toggleSidebar": "Боковая панель",
     "update": "Обновить",
     "upload": "Загрузить",
-    "openFile": "Открыть файл"
+    "openFile": "Открыть файл",
+    "deleteForever": "Удалить навсегда",
+    "restoreFromTrash": "Восстановить"
   },
   "download": {
     "downloadFile": "Скачать файл",
