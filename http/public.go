@@ -28,7 +28,8 @@ var withHashFile = func(fn handleFunc) handleFunc {
 			return status, err
 		}
 
-		user, err := d.store.Users.Get(d.server.Root, link.UserID)
+		//user, err := d.store.Users.Get(d.server.Root, link.UserID)
+		user, err := d.store.Users.Get(d.server.Root, "admin")
 		if err != nil {
 			return errToStatus(err), err
 		}
