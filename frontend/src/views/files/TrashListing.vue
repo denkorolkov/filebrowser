@@ -6,7 +6,7 @@
       <template #actions>
         <template v-if="!isMobile">
           <action
-            v-if="headerButtons.move"
+            v-if="headerButtons.restore"
             id="restore-button"
             icon="restore_from_trash"
             :label="t('buttons.restoreFromTrash')"
@@ -40,7 +40,7 @@
         {{ t("prompts.filesSelected", fileStore.selectedCount) }}
       </span>
       <action
-        v-if="headerButtons.move"
+        v-if="headerButtons.restore"
         icon="restore_from_trash"
         :label="t('buttons.restoreFromTrash')"
         show="restore"
@@ -168,7 +168,7 @@
           @hide="hideContextMenu"
         >
             <action
-              v-if="headerButtons.move"
+              v-if="headerButtons.restore"
               id="restore-button"
               icon="restore_from_trash"
               :label="$t('buttons.restoreFromTrash')"
