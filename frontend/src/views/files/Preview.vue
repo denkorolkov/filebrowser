@@ -119,7 +119,7 @@
             </a>
             <a
               target="_blank"
-              :href="raw"
+              :href="raw_open"
               class="button button--flat"
               v-if="!fileStore.req?.isDir"
             >
@@ -266,6 +266,18 @@ const raw = computed(() => {
   }
 
   return downloadUrl.value;
+});
+
+const raw_open = computed(() => {
+  if (fileStore.req?.type === "image" && !fullSize.value) {
+    return api.getPreviewURL(fileStore.req, "big");
+  }
+
+  if (isEpub.value) {
+    return createURL("api/raw" + fileStore.req?.path, {}, false);
+  }
+
+  return "https://docs.google.com/viewer?url=" + downloadUrl.value;
 });
 
 const isPdf = computed(() => fileStore.req?.extension.toLowerCase() == ".pdf");
