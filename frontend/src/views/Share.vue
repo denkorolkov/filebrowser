@@ -364,7 +364,7 @@ const raw = computed(() => {
     : "";
 });
 const inlineLink = computed(() =>
-  req.value ? api.getDownloadURL(req.value, true) : ""
+  req.value ? "https://docs.google.com/viewer?url=" + api.getDownloadURL(req.value, true) : ""
 );
 const humanSize = computed(() => {
   if (req.value) {
