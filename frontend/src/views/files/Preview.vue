@@ -281,7 +281,7 @@ const raw_open = computed(() => {
 });
 
 const raw_pdf = computed(() => {
-  return "https://docs.google.com/viewer?url=" + (fileStore.req ? api.getDownloadURL(fileStore.req,false) : "");
+  return "https://docs.google.com/viewer?url=" + (fileStore.req ? api.getDownloadURL(fileStore.req,false) + "&embedded=true": "");
 });
 
 const isPdf = computed(() => fileStore.req?.extension.toLowerCase() == ".pdf");
