@@ -6,7 +6,7 @@
     @mousemove="toggleNavigation"
     @touchstart="toggleNavigation"
   >
-    <header-bar v-if="isPdf || isEpub || showNav">
+    <header-bar v-if="isEpub || showNav">
       <action icon="close" :label="$t('buttons.close')" @action="close()" />
       <title>{{ name }}</title>
       <action
@@ -104,7 +104,7 @@
           :options="videoOptions"
         >
         </VideoPlayer>
-        <object v-else-if="isPdf" class="pdf" :data="raw"></object>
+        <object v-else-if="isPdf" class="pdf" :data="raw_pdf"></object>
         <div v-else-if="fileStore.req?.type == 'blob'" class="info">
           <div class="title">
             <i class="material-icons">feedback</i>
@@ -278,6 +278,10 @@ const raw_open = computed(() => {
   }
 
   return "https://docs.google.com/viewer?url=" + downloadUrl.value;
+});
+
+const raw_pdf = computed(() => {
+  return "https://docs.google.com/viewer?url=" + (fileStore.req ? api.getDownloadURL(fileStore.req,false) : "");
 });
 
 const isPdf = computed(() => fileStore.req?.extension.toLowerCase() == ".pdf");
