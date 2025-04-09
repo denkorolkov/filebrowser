@@ -104,7 +104,7 @@
           :options="videoOptions"
         >
         </VideoPlayer>
-        <object v-else-if="isPdf" class="pdf" :data="raw"></object>
+        <object v-else-if="isPdf" class="pdf" :data="raw_pdf"></object>
         <div v-else-if="fileStore.req?.type == 'blob'" class="info">
           <div class="title">
             <i class="material-icons">feedback</i>
