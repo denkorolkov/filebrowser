@@ -144,6 +144,14 @@
               type="text"
               v-model="settings.trashPath"
             />
+
+          <h3>PDF</h3>
+          <p class="small">{{ t("settings.pdfViewerUrl") }}</p>
+          <input
+              class="input input--block"
+              type="text"
+              v-model="settings.pdfViewerUrl"
+          />
         </div>
 
         <div class="card-action">

@@ -165,6 +165,7 @@ import { useFileStore } from "@/stores/file";
 import { useLayoutStore } from "@/stores/layout";
 
 import { files as api } from "@/api";
+import { settings as apiSettings } from "@/api";
 import { createURL } from "@/api/utils";
 import { resizePreview } from "@/utils/constants";
 import url from "@/utils/url";
@@ -245,6 +246,8 @@ const authStore = useAuthStore();
 const fileStore = useFileStore();
 const layoutStore = useLayoutStore();
 
+const pdfViewerUrl = ref<string>("");
+
 const route = useRoute();
 const router = useRouter();
 
@@ -281,7 +284,7 @@ const raw_open = computed(() => {
 });
 
 const raw_pdf = computed(() => {
-  return "https://docs.google.com/viewer?url=" + (fileStore.req ? api.getDownloadURL(fileStore.req,false) + "&embedded=true": "");
+  return pdfViewerUrl.value + "?file=files" + fileStore.req?.path;
 });
 
 const isPdf = computed(() => fileStore.req?.extension.toLowerCase() == ".pdf");
@@ -314,6 +317,8 @@ onMounted(async () => {
     listing.value = fileStore.oldReq.items;
     updatePreview();
   }
+  const settings: ISettings = await apiSettings.get();
+  pdfViewerUrl.value = settings.pdfViewerUrl;
 });
 
 onBeforeUnmount(() => window.removeEventListener("keydown", key));

@@ -9,6 +9,7 @@ interface ISettings {
   shell: string[];
   commands: SettingsCommand;
   trashPath: string;
+  pdfViewerUrl: string;
 }
 
 interface SettingsDefaults {

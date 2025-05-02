@@ -28,6 +28,7 @@ type Settings struct {
 	Shell            []string            `json:"shell"`
 	Rules            []rules.Rule        `json:"rules"`
 	TrashPath        string              `json:"trashPath"`
+	PdfViewerUrl     string              `json:"pdfViewerUrl"`
 }
 
 // GetRules implements rules.Provider.
