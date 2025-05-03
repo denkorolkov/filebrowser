@@ -22,7 +22,7 @@ type settingsData struct {
 	PdfViewerUrl     string                `json:"pdfViewerUrl"`
 }
 
-var settingsGetHandler = withAdmin(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
+var settingsGetHandler = withUser(func(w http.ResponseWriter, r *http.Request, d *data) (int, error) {
 	data := &settingsData{
 		Signup:           d.settings.Signup,
 		CreateUserDir:    d.settings.CreateUserDir,
